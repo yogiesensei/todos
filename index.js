@@ -80,6 +80,7 @@ const handleForm = async (e) => {
         todoContainer.innerHTML = items
         localStorage.setItem('local', JSON.stringify(newTodo))
         todoData = JSON.parse(localStorage.getItem('local'))
+        title.value = ''
         // await fetch('http://localhost:3000/todo', {
         //     method: 'POST',
         //     headers: {
