@@ -2,8 +2,8 @@ const input = document.getElementById('title')
 const todoContainer = document.querySelector('#todo-container')
 const form = document.getElementById('form')
 let todoData = []
-const uuid = function(){
-    return Date.now().toString(36) + Math.random().toString(36).substr(2);
+const uuid = function () {
+    return Date.now().toString(36) + Math.random().toString(36).substring(2);
 }
 const renderItem = (item) => {
     return `
@@ -24,42 +24,18 @@ const handleCompleted = async (id) => {
     todoContainer.innerHTML = items
     localStorage.setItem('local', JSON.stringify(newTodo))
     todoData = JSON.parse(localStorage.getItem('local'))
-    // await fetch(`http://localhost:3000/todo/${id}`, {
-    //     method: 'PUT',
-    //     headers: {
-    //         "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //         title: todoData?.find(item => item?.id === id)?.title,
-    //         completed: !todoData?.find(item => item?.id === id)?.completed
-    //     })
-    // }).then(async () => {
-    //     await getData()
-    // })
 }
 
 const handleDelete = async (id) => {
     let newTodo = []
     newTodo = todoData.filter(item => item.id !== id)
     let items = ''
-        newTodo.map(item => {
-            items += renderItem(item)
-        })
-        todoContainer.innerHTML = items
+    newTodo.map(item => {
+        items += renderItem(item)
+    })
+    todoContainer.innerHTML = items
     localStorage.setItem('local', JSON.stringify(newTodo))
     todoData = JSON.parse(localStorage.getItem('local'))
-    // let items = ''
-    // newTodo.map(item => {
-    //     items += renderItem(item)
-    // })
-    // todoContainer.innerHTML = items
-    // localStorage.setItem('local', JSON.stringify)(newTodo)
-
-    // await fetch(`http://localhost:3000/todo/${id}`, {
-    //     method: 'DELETE',
-    // }).then(async () => {
-    //     await getData()
-    // })
 }
 
 const handleForm = async (e) => {
@@ -81,19 +57,6 @@ const handleForm = async (e) => {
         localStorage.setItem('local', JSON.stringify(newTodo))
         todoData = JSON.parse(localStorage.getItem('local'))
         title.value = ''
-        // await fetch('http://localhost:3000/todo', {
-        //     method: 'POST',
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //     },
-        //     body: JSON.stringify({
-        //         title: input.value,
-        //         completed: false
-        //     })
-        // }).then(() => {
-        //     title.value = ''
-        //     getData()
-        // })
     }
 }
 const submit = document.getElementById('submit')
@@ -110,19 +73,6 @@ const getData = async () => {
     } else {
         localStorage.setItem('local', JSON.stringify([]))
     }
-    // await fetch(' http://localhost:3000/todo').then(res => res.json()).then(
-    //     data => {
-    //         todoData=data
-    //         if (data.length) {
-    //             let items = ''
-    //             data.map(item => {
-    //                 items += renderItem(item)
-    //             })
-    //             todoContainer.innerHTML = items
-    //         }
-    //     }
-    // )
-
 }
 
 getData()
